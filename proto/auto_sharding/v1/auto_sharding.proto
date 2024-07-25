@@ -1,0 +1,41 @@
+syntax = "proto3";
+package auto_sharding.v1;
+
+service AutoShardingService {
+  rpc Acquire(AcquireRequest) returns (AcquireResponse);
+  rpc Release(ReleaseRequest) returns (ReleaseResponse);
+}
+
+service StatsService {
+  rpc HealthShard(HealthShardRequest) returns (HealthShardResponse);
+}
+
+message HealthShardRequest {}
+
+message HealthShardResponse {
+  repeated HealthShardResponseShard shards = 1;
+}
+
+enum HealthShardResponseShardStatus {
+  RUNNING = 0;
+  DOWN = 1;
+}
+
+message HealthShardResponseShard {
+  uint32 shard_id = 1;
+  float latency = 2;
+  float updated_at = 3;
+  HealthShardResponseShardStatus status = 4;
+}
+
+message AcquireRequest {}
+
+message AcquireResponse {
+  uint32 shard_id = 1;
+}
+
+message ReleaseRequest {
+  uint32 shard_id = 1;
+}
+
+message ReleaseResponse {}
