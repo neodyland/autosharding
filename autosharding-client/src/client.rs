@@ -28,7 +28,9 @@ mod tests {
 
     #[tokio::test]
     async fn get_shard() {
-        let mut client = Client::connect("http://localhost:1919".to_string()).await.unwrap();
+        let mut client = Client::connect("http://localhost:1919".to_string())
+            .await
+            .unwrap();
         let shard_id = client.get_shard_id().await.unwrap();
         println!("{}", shard_id);
     }
