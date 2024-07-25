@@ -1,5 +1,7 @@
 [workspace]
-members = ["autosharding-server"]
+members = [ "autosharding-client","autosharding-server"]
 
 [workspace.dependencies]
+prost = "0.13.1"
 tonic = "0.12.1"
+tonic-build = "0.12.1"
