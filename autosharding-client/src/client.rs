@@ -34,4 +34,15 @@ mod tests {
         let shard_id = client.get_shard_id().await.unwrap();
         println!("{}", shard_id);
     }
+
+    #[tokio::test]
+    async fn get_many_shards() {
+        let mut client = Client::connect("http://localhost:1919".to_string())
+            .await
+            .unwrap();
+
+        for _ in 0..1000 {
+            println!("{}", client.get_shard_id().await.unwrap());
+        }
+    }
 }
