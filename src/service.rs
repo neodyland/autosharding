@@ -1,8 +1,7 @@
-use std::sync::Arc;
 
 use crate::{pb, sys::ShardManager};
-use tokio::sync::{Mutex, Semaphore};
-use tonic::{Code, Request, Response, Status};
+use tokio::sync::{Mutex};
+use tonic::{Request, Response, Status};
 
 use pb::{
     auto_sharding_service_server::AutoShardingService, AcquireRequest, AcquireResponse,
