@@ -1,6 +1,6 @@
 use std::sync::Arc;
 
-use tokio::sync::{Semaphore};
+use tokio::sync::Semaphore;
 use tonic::{Code, Status};
 
 use crate::prelude::*;

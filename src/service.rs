@@ -1,6 +1,5 @@
-
 use crate::{pb, sys::ShardManager};
-use tokio::sync::{Mutex};
+use tokio::sync::Mutex;
 use tonic::{Request, Response, Status};
 
 use pb::{
