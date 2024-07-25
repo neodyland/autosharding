@@ -1,6 +1,8 @@
 use std::env;
 mod service;
+mod sys;
 
+use sys::ShardManager;
 use tonic::transport::Server;
 
 pub mod prelude {
@@ -25,7 +27,9 @@ async fn main() -> anyhow::Result<()> {
 
     tracing::info!("Autosharding system v{}", env!("CARGO_PKG_VERSION"));
 
-    let shard_service = ShardService::new(shard_count.parse::<usize>()?, 5);
+    let shard_service = ShardService {
+        manager: tokio::sync::Mutex::new(ShardManager::new(shard_count.parse::<usize>()?, 5)),
+    };
 
     Server::builder()
         .add_service(AutoShardingServiceServer::new(shard_service))
