@@ -28,7 +28,7 @@ async fn main() -> anyhow::Result<()> {
     tracing::info!("Autosharding system v{}", env!("CARGO_PKG_VERSION"));
 
     let shard_service = ShardService {
-        manager: tokio::sync::Mutex::new(ShardManager::new(shard_count.parse::<usize>()?, 5)),
+        manager: tokio::sync::Mutex::new(ShardManager::new(shard_count.parse::<usize>()?, 16)),
     };
 
     Server::builder()
