@@ -14,7 +14,8 @@ impl Client {
         Ok(Self { client })
     }
 
-    pub async fn get_shard_id(&mut self) -> Result<u32> {
+    /// Get shard id
+    pub async fn acquire(&mut self) -> Result<u32> {
         let request = Request::new(AcquireRequest {});
         let response = self.client.acquire(request).await?;
         let data = response.get_ref();
