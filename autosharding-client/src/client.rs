@@ -43,7 +43,7 @@ mod tests {
             .unwrap();
 
         for _ in 0..1000 {
-            println!("{}", client.get_shard_id().await.unwrap());
+            println!("{}", client.acquire().await.unwrap());
         }
     }
 }
