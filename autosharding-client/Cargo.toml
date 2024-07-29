@@ -1,0 +1,15 @@
+[package]
+name = "autosharding-client"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+prost = { workspace = true }
+tonic = { workspace = true }
+
+[build-dependencies]
+tonic-build = { workspace = true }
+
+[dev-dependencies]
+anyhow = "1.0.86"
+tokio = { version = "1.39.1", features = ["full"] }
