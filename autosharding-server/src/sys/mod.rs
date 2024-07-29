@@ -43,6 +43,7 @@ impl ShardManager {
         for maybe_stopped_shard in self.shards.iter_mut() {
             if let ShardStatus::Stopped = maybe_stopped_shard.status {
                 shard.replace(maybe_stopped_shard);
+                break;
             }
         }
 
@@ -62,7 +63,7 @@ impl ShardManager {
             })?;
 
         tokio::spawn(async {
-            let _ = tokio::time::sleep(std::time::Duration::from_secs(5));
+            tokio::time::sleep(std::time::Duration::from_secs(5)).await;
             drop(permit);
         });
 
